@@ -1,6 +1,6 @@
 <?php 
 include_once "database/db-connection.php";
-// include_once "database/db-login.php";
+include_once "database/db-user-auth.php";
 ?>
 
 
@@ -27,7 +27,7 @@ include_once "database/db-connection.php";
 
                     <h3 class="text-center text-secondary mb-5">Connexion</h3>
 
-                    <form action="database/db-login.php" method="post">
+                    <form action="database/db-user-auth.php" method="post">
                         <div class="mb-3">
                             <label for="email" class="mb-1">Identifiant : </label>
                             <input type="email" class="form-control" name="email" id="email" 

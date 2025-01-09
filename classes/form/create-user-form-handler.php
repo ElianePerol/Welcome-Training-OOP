@@ -1,5 +1,6 @@
 <?php
 
+include_once "user-form.php";
 include_once __DIR__ . "/../getter/fetch-all-classes.php";
 
 
@@ -23,19 +24,21 @@ class CreateUser {
         return $this->fetchClass->fetchAllClasses();
     }
 
-    public function createUser($first_name, $surname, $email, $password, $role, $class_id = null) {
-        $hashedPassword = $this->pwdHash($password);
+    public function createUser() {
+        $form = new UserForm;
         
-        $sql = "INSERT INTO user (surname, first_name, email, password, role, class_id) 
-                VALUES (:surname, :first_name, :email, :password, :role, :class)";
+        $hashedPassword = $this->pwdHash($form->password);
+        
+        $sql = "INSERT INTO user (first_name, surname, email, password, class_id, role) 
+                VALUES (:first_name, :surname, :email, :password, :class, :role)";
                 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':surname', $surname, PDO::PARAM_STR);
-        $stmt->bindParam(':first_name', $first_name, PDO::PARAM_STR);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':first_name', $form->first_name, PDO::PARAM_STR);
+        $stmt->bindParam(':surname', $form->surname, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $form->email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
-        $stmt->bindParam(':role', $role, PDO::PARAM_STR);
-        $stmt->bindParam(':class', $class_id, PDO::PARAM_INT);
+        $stmt->bindParam(':class', $form->class_id, PDO::PARAM_INT);
+        $stmt->bindParam(':role', $form->role, PDO::PARAM_STR);
         
         return $stmt->execute();
     }

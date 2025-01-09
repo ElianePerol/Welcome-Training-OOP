@@ -14,4 +14,12 @@ class FetchAllClasses {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function fetchAllClassesID() {
+        $sql = "SELECT id, name FROM class";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

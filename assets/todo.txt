@@ -1,0 +1,58 @@
+Bugs : 
+
+    Display :
+        main overlapping header and footer, when tables too high, messes up scroll (check student list on admin dashboard)
+        "appel" card div doesn't shrink after submitting the mark-attendance form
+
+    Timeout on the sucess/error message displaying when submitting a form
+    which is set up in the databas/create folder, and in assets/mains
+
+Failed ideas :
+
+    Tried to refactor the update classes, to have one single UpdateData class
+    but this resulted in the user id number (however, i tried on students only, 
+    so maybe it was updatin with their class's id, i haven't explored this option) 
+    of the data to be in every input instead of the actually updated data
+
+Functionalities :
+
+    Add a display of the attendance :
+        Admin dashboard : per class, per day, per schedule : list of absent student
+        Teacher dashboard : same
+        Student : list of day/schedule
+
+    When creating a schedule, check there's no clashing schedule for the selected class and Teacher
+
+    Error message when wrong email/password on login
+
+Next steps :
+
+    Display students schedule of the day, with date, time, subject and teacher :
+        class TodayStudentSchedules :
+            methods :
+                FetchTodaySchedules (to return list of schedule_id, start_time and date_time), 
+                FetchTodaySubjects (to return matching list subject name), 
+                FetchTodayTeachers (to return matching list teacher name)
+                DisplayTodaySchedule (to display current date, time, subject and teacher of each schedule of the day)
+    
+    Display teacher schedule of the day, with date, time, subject and class :
+        class TodayTeacherSchedules :
+            methods :
+                FetchTodaySchedules (to return list of schedule_id, start_time and date_time), 
+                FetchTodaySubjects (to return matching list subject name), 
+                FetchTodayClasses (to return matching list class name)
+                DisplayTodaySchedule (to display current date, time, subject and class of each schedule of the day)
+    
+    Could be achieved using rather the following classes : 
+        FetchTodaySchedules (to return list of schedule_id, start_time and date_time), 
+        FetchTodaySubjects (to return matching list subject name),
+        DisplayTodaySchedule (to display current date, time, subject and teacher of each schedule of the day)
+        TodayStudentSchedules : using a FetchTodaySchedules, a FetchTodaySubjects and a DisplayTodaySchedule objects, and a FetchTodayTeachers method
+        TodayTeacherSchedules : using a FetchTodaySchedules, a FetchTodaySubjects and a DisplayTodaySchedule objects, and a FetchTodayClasses method
+
+    Mark attendance for student of ongoing schedule :
+        class OngoingSchedule : 
+            methods : 
+                OngoingScheduleteacher returns the schedule going on at current date and time for a specific teacher
+                OngoingScheduleClass returns the schedule going on at current date and time for a specific class
+                OngoingScheduleSubject returns the subject going on at current date and time for a specific schedule

@@ -8,7 +8,7 @@ class FetchAllTeachers {
     }
 
     public function fetchAllTeachers() {
-        $sql = "SELECT id, first_name, surname FROM user WHERE role = 'enseignant'";
+        $sql = "SELECT id, first_name, surname, email FROM user WHERE role = 'enseignant'";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
 

@@ -45,6 +45,7 @@ class CreateSchedule {
         $stmt_schedule->bindParam(':teacher_id', $form->teacher_id, PDO::PARAM_INT);
         $stmt_schedule->bindParam(':start_datetime', $form->start_datetime_str, PDO::PARAM_STR);
         $stmt_schedule->bindParam(':end_datetime', $form->end_datetime_str, PDO::PARAM_STR);
-        $stmt_schedule->execute();
+        
+        return $stmt_schedule->execute();
     }
 }

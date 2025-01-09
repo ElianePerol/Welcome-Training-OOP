@@ -16,16 +16,16 @@
 
             <form action="create-user.php" method="POST">
 
-              <!-- Nom -->
-              <div class="mb-3">
-                <label for="nom" class="form-label">Nom :</label>
-                <input type="text" class="form-control" id="nom" name="first_name" placeholder="Entrez le nom" required>
-              </div>
-
               <!-- Prénom -->
               <div class="mb-3">
                 <label for="prenom" class="form-label">Prénom :</label>
-                <input type="text" class="form-control" id="prenom" name="surname" placeholder="Entrez le prénom" required>
+                <input type="text" class="form-control" id="prenom" name="first_name" placeholder="Entrez le prénom" required>
+              </div>
+              
+              <!-- Nom -->
+              <div class="mb-3">
+                <label for="nom" class="form-label">Nom :</label>
+                <input type="text" class="form-control" id="nom" name="surname" placeholder="Entrez le nom" required>
               </div>
 
               <!-- Email -->

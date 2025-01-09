@@ -4,8 +4,6 @@ Bugs :
         main overlapping header and footer, when tables too high, messes up scroll (check student list on admin dashboard)
         "appel" card div doesn't shrink after submitting the mark-attendance form
 
-    Timeout on the sucess/error message displaying when submitting a form
-    which is set up in the databas/create folder, and in assets/mains
 
 Failed ideas :
 
@@ -25,34 +23,64 @@ Functionalities :
 
     Error message when wrong email/password on login
 
+    Success/Error messages when submitting a form
+
 Next steps :
 
-    Display students schedule of the day, with date, time, subject and teacher :
-        class TodayStudentSchedules :
-            methods :
-                FetchTodaySchedules (to return list of schedule_id, start_time and date_time), 
-                FetchTodaySubjects (to return matching list subject name), 
-                FetchTodayTeachers (to return matching list teacher name)
-                DisplayTodaySchedule (to display current date, time, subject and teacher of each schedule of the day)
-    
-    Display teacher schedule of the day, with date, time, subject and class :
-        class TodayTeacherSchedules :
-            methods :
-                FetchTodaySchedules (to return list of schedule_id, start_time and date_time), 
-                FetchTodaySubjects (to return matching list subject name), 
-                FetchTodayClasses (to return matching list class name)
-                DisplayTodaySchedule (to display current date, time, subject and class of each schedule of the day)
-    
-    Could be achieved using rather the following classes : 
-        FetchTodaySchedules (to return list of schedule_id, start_time and date_time), 
-        FetchTodaySubjects (to return matching list subject name),
-        DisplayTodaySchedule (to display current date, time, subject and teacher of each schedule of the day)
-        TodayStudentSchedules : using a FetchTodaySchedules, a FetchTodaySubjects and a DisplayTodaySchedule objects, and a FetchTodayTeachers method
-        TodayTeacherSchedules : using a FetchTodaySchedules, a FetchTodaySubjects and a DisplayTodaySchedule objects, and a FetchTodayClasses method
+    Display schedules, classes needed :
+        FetchSubjectPerSchedule (to return the subject of a given schedule ID)  
+        FetchTeacherPerSchedule (to return the teacher of a given schedule ID)
+        FetchClassPerSchedule (to return the class of a given schedule ID)
+        FetchAllStudentsPerSchedule (to return all the students of a given schedule ID)
 
-    Mark attendance for student of ongoing schedule :
-        class OngoingSchedule : 
-            methods : 
-                OngoingScheduleteacher returns the schedule going on at current date and time for a specific teacher
-                OngoingScheduleClass returns the schedule going on at current date and time for a specific class
-                OngoingScheduleSubject returns the subject going on at current date and time for a specific schedule
+        Display today's schedule on teacher and student dashboard, classes needed :
+
+            FetchTodaySchedules (to return list of schedules for the ongoing day) :
+                methods :
+                    FetchTodaySubjectPerSchedule (to return list of subjects for the ongoing day using a FetchSubjectPerSchedule object)  
+                    FetchTodayTeacherPerSchedule (to return list of teachers for the ongoing day using a FetchTeacherPerSchedule object)
+                    FetchTodayClassPerSchedule (to return list of classes for the ongoing day using a FetchClassPerSchedule object)
+
+            DisplayTodaySchedule (to display today's list of schedules on dashboards) :
+                methods :
+                    StudentSchedules (to display on student dashboard a list of today's schedule : date, time, subject and teacher, using a 
+                        FetchTodaySchedules object with all its methods)
+                    TeacherSchedules (to display on teacher dashboard a list of today's schedule : date, time, subject and class, using a 
+                        FetchTodaySchedules object with all its methods)
+        
+        Display ongoing schedule on teacher and student dashboard, classes needed :
+        
+            FetchOngoingSchedules (to return the currently ongoing schedule) :
+                methods :
+                    FetchOngoingSubjectPerSchedule (to return subject for the currently ongoing schedule using a FetchSubjectPerSchedule object)  
+                    FetchOngoingTeacherPerSchedule (to return teacher for the currently ongoing schedule using a FetchTeacherPerSchedule object)
+                    FetchOngoingClassPerSchedule (to return class for the currently ongoing schedule using a FetchClassPerSchedule object)
+
+            DisplayOngoingSchedule (to display the currently ongoing schedule on dashboards) :
+                methods : 
+                    StudentSchedules (to display on student dashboard the currently ongoing schedule : date, time, subject and teacher, using a 
+                        FetchOngoingSchedules object with all its methods)
+                    TeacherSchedules (to display on teacher dashboard the currently ongoing schedule : date, time, subject, class and student list (with check boxes), using a 
+                        FetchOngoingSchedules object with all its methods)
+
+    Mark attendance for student of ongoing schedule, classes needed :
+
+        class AttendanceHandler :
+            methods :
+                MarkAttendance (to feeds the attendance table with 0/1 into the marked_attendance column (other columns are id, student_id, 
+                    schedule_id and signed_attendance which is left NULL) using a checkbox submitted form on the teacher dashboard and the retrieved ongoing schedule_id, 
+                    student_id list from DisplayOngoingSchedule object with TeacherSchedule method)
+                SendSignatureRequest (to display a "sign" button on the student dashboard, using the MarkAttendance method, with attributes schedule_id 
+                    and student_id retrieved from DisplayOngoingSchedule object and TeacherSchedule method)
+                SignAttendance (to feed the attendance table with a timestamp into the signed_attendance column, using MarkAttendance method, with attributes schedule_id 
+                    and student_id retrieved from DisplayOngoingSchedule object and StudentsSchedule method)
+    
+    Display Attendance :
+        class Absence :
+            methods :
+                FetchAllMissedSchedule (to return the schedule IDs of all the missed schedules per student_id, using the attendance table : absence is marked_attendance == 0
+                    or if signed_attendance == NULL)
+                DisplayStudentAbsences (to display a list of the absences, with date, time, subject and teacher names (on "Absences" page for students, on "Students" page for 
+                    teachers and admin, using a modal))
+
+        

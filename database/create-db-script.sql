@@ -35,12 +35,12 @@ CREATE TABLE schedule (
     FOREIGN KEY (teacher_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
-CREATE TABLE signature (
+CREATE TABLE attendance (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
     schedule_id INT NOT NULL,
-    attended BOOLEAN NOT NULL,
-    signature_timestamp DATETIME NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    student_id INT NOT NULL,
+    marked_attendance BOOLEAN NOT NULL,
+    signed_attendance DATETIME DEFAULT NULL,
     FOREIGN KEY (schedule_id) REFERENCES schedule(id) ON DELETE CASCADE
+    FOREIGN KEY (student_id) REFERENCES user(id) ON DELETE CASCADE,
 );

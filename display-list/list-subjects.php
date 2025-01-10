@@ -3,10 +3,7 @@ include_once "../common/header.php";
 include_once "../database/db-connection.php";
 include_once "../database/update/db-update-subject.php";
 include_once "../database/delete/db-delete-entry.php";
-include_once "../classes/getter/fetch-all-subjects.php";
-
-$fetchSubjects = new FetchAllSubjects($pdo);
-$subjects = $fetchSubjects->fetchAllSubjects();
+include_once "../database/db-display-lists.php";
 ?>
 
 <main class="bg-light d-flex align-items-center vh-100">

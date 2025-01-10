@@ -1,8 +1,8 @@
 <?php 
 include_once "../common/header.php";
-// include_once "../common/footer.php";
-// Don't know why this works, but the include_at the bottom of the page
-// include_once "../database/attendance/db-mark-attendance.php";
+include_once "../database/db-connection.php";
+include_once "../database/dashboard/db-teacher-dashboard.php";
+include_once "../database/attendance/db-mark-attendance.php";
 ?>
 
 <main class="bg-light d-flex align-items-center vh-100">
@@ -36,9 +36,12 @@ include_once "../common/header.php";
                   <!-- <?php else: ?> -->
                       <!-- <?php foreach ($schedules as $schedule): ?> -->
                           <tr>
-                            <td class="text-center"><?= (new DateTime($schedule['start_datetime']))->format('H:i') . ' - ' . (new DateTime($schedule['end_datetime']))->format('H:i') ?></td>
-                            <td class="text-center"><?= $schedule['subject_name'] ?></td>
-                            <td class="text-center"><?= $schedule['class_name'] ?></td>
+                            <td class="text-center">
+                              <?= (new DateTime($schedule['start_time']))->format('H:i') . ' - ' . 
+                                  (new DateTime($schedule['end_time']))->format('H:i') ?>
+                            </td>
+                            <td class="text-center"><?= $schedule['subject'] ?></td>
+                            <td class="text-center"><?= $schedule['class'] ?></td>
                           </tr>
                       <!-- <?php endforeach; ?> -->
                   <!-- <?php endif; ?> -->
@@ -48,8 +51,6 @@ include_once "../common/header.php";
     </div>
 
     <!-- Classe en cours -->
-    <!-- <?php if (!$no_class_today && $current_schedule_id): ?> -->
-
     <div class="card align-self-start bg-white border-0 shadow col-md-3 p-0 register">
   
       <div class="schedule-header rounded-top p-1 mb-2">
@@ -59,23 +60,29 @@ include_once "../common/header.php";
       <div class="d-flex justify-content-center align-items-center flex-column">
         <p class="text-center"><?= 'Classe : ' . $current_class_name ?></p>
         <p class="text-center"><?= 'Matière : ' . $current_subject_name ?></p>
+        <p><?= (new DateTime($schedule['start_time']))->format('H:i') . ' - ' . 
+               (new DateTime($schedule['end_time']))->format('H:i') ?></p>
       </div>
 
       <div class="m-2 mb-4 mw-75 overflow-auto">
-        <!-- <?php if ($attendance_marked): ?> -->
-          <!-- Show "Appel terminé" after attendance is marked -->
-          <p class="text-center text-success">Appel terminé</p>
-        <!-- <?php else: ?> -->
-          <!-- Show student list before the form is submitted -->
+        <?php if (empty($ongoingSchedule)): ?>
+          <p class="text-center text-secondary">Aucune classe en cours actuellement</p>
+        
+        <!-- Liste des étudiants pour faire l'appel en cochant le nom -->
+        <?php else: ?>
           <form action="" method="POST">
-            <ul class="list-group mb-3">
+          <ul class="list-group mb-3">
                 <?php foreach ($students as $student): ?>
-                    <input type="hidden" name="attendance[<?= $student['student_id'] ?>]" value="0" />
+                    <!-- Hidden input for the default value of 0 (if not checked) -->
+                    <input type="hidden" name="marked_attendance[<?= $student['student_id'] ?>]" value="0" />
                     <li class="list-group-item custom-checkbox d-flex justify-content-between align-items-center">
                         <label class="form-check-label" for="student<?= $student['student_id'] ?>">
                             <?= $student['first_name'] . " " . $student['surname'] ?>
                         </label>
-                        <input class="form-check-input" type="checkbox" name="attendance[<?= $student['student_id'] ?>]" id="student<?= $student['student_id'] ?>" />
+                        <!-- Checkbox input that will return 1 when checked -->
+                        <input class="form-check-input" type="checkbox"
+                            name="marked_attendance[<?= $student['student_id'] ?>]" 
+                            id="student<?= $student['student_id'] ?>" value="1" />
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -88,7 +95,7 @@ include_once "../common/header.php";
         <!-- <?php endif; ?> -->
       </div>
     </div>
-    <!-- <?php endif; ?> -->
+
 
   </div>
 </div>

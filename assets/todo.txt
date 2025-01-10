@@ -25,6 +25,10 @@ Functionalities :
 
     Success/Error messages when submitting a form
 
+    Filter to display data in the wanted order (alphabetical for example)
+
+    Add a weekly view of the schedules, using calendar js ?
+
 Next steps :
 
     Display schedules, classes needed :
@@ -33,35 +37,18 @@ Next steps :
         FetchClassPerSchedule (to return the class of a given schedule ID)
         FetchAllStudentsPerSchedule (to return all the students of a given schedule ID)
 
-        Display today's schedule on teacher and student dashboard, classes needed :
 
-            FetchTodaySchedules (to return list of schedules for the ongoing day) :
-                methods :
-                    FetchTodaySubjectPerSchedule (to return list of subjects for the ongoing day using a FetchSubjectPerSchedule object)  
-                    FetchTodayTeacherPerSchedule (to return list of teachers for the ongoing day using a FetchTeacherPerSchedule object)
-                    FetchTodayClassPerSchedule (to return list of classes for the ongoing day using a FetchClassPerSchedule object)
+        FetchTodaySchedules (to return and display list of schedules for the ongoing day) :
+            methods :
+                FetchTodaySchedule (to return list of todays' schedules (date, start_time, end_time, subjects, classes and teachers))  
+                StudentSchedule (to return list of schedules (date, time, subject and teacher))
+                TeacherSchedule (to return list of schedules (date, time, subject and class))
 
-            DisplayTodaySchedule (to display today's list of schedules on dashboards) :
-                methods :
-                    StudentSchedules (to display on student dashboard a list of today's schedule : date, time, subject and teacher, using a 
-                        FetchTodaySchedules object with all its methods)
-                    TeacherSchedules (to display on teacher dashboard a list of today's schedule : date, time, subject and class, using a 
-                        FetchTodaySchedules object with all its methods)
-        
-        Display ongoing schedule on teacher and student dashboard, classes needed :
-        
-            FetchOngoingSchedules (to return the currently ongoing schedule) :
-                methods :
-                    FetchOngoingSubjectPerSchedule (to return subject for the currently ongoing schedule using a FetchSubjectPerSchedule object)  
-                    FetchOngoingTeacherPerSchedule (to return teacher for the currently ongoing schedule using a FetchTeacherPerSchedule object)
-                    FetchOngoingClassPerSchedule (to return class for the currently ongoing schedule using a FetchClassPerSchedule object)
-
-            DisplayOngoingSchedule (to display the currently ongoing schedule on dashboards) :
-                methods : 
-                    StudentSchedules (to display on student dashboard the currently ongoing schedule : date, time, subject and teacher, using a 
-                        FetchOngoingSchedules object with all its methods)
-                    TeacherSchedules (to display on teacher dashboard the currently ongoing schedule : date, time, subject, class and student list (with check boxes), using a 
-                        FetchOngoingSchedules object with all its methods)
+        FetchOngoingSchedules (to return and display the schedules going on at the current time) :
+            methods :
+                FetchOngoingSchedule (to return the ongoing schedule (date, start_time, end_time, subjects, classes and teachers))  
+                StudentSchedule (to return ongoing schedules (date, time, subject and teacher))
+                TeacherSchedule (to return ongoing schedules (date, time, subject and class))
 
     Mark attendance for student of ongoing schedule, classes needed :
 

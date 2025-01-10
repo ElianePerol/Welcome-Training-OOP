@@ -3,10 +3,7 @@ include_once "../common/header.php";
 include_once "../database/db-connection.php";
 include_once "../database/update/db-update-teacher.php";
 include_once "../database/delete/db-delete-entry.php";
-include_once "../classes/getter/fetch-all-teachers.php";
-
-$fetchTeachers = new FetchAllTeachers($pdo);
-$teachers = $fetchTeachers->fetchAllTeachers();
+include_once "../database/db-display-lists.php";
 ?>
 
 <main class="bg-light d-flex align-items-center vh-100">

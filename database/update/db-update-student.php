@@ -11,4 +11,5 @@ if(count($_POST) > 0 && isset($_POST['update-student'])) {
     $updateStudent = new UpdateStudent($pdo);
     $updateStudent->updateStudent($first_name, $surname, $email, $class_id, $id);
 }
+
 ?>

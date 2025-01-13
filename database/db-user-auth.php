@@ -8,4 +8,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $auth = new UserAuth($pdo);
     $auth->login($email, $password);
 }
+
 ?>

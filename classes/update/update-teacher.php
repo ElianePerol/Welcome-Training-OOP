@@ -23,5 +23,4 @@ class UpdateTeacher {
         $stmt->execute();
     }
 }
-
 ?>

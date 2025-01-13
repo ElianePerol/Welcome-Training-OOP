@@ -43,5 +43,4 @@ class CreateUser {
         return $stmt->execute();
     }
 }
-
 ?>

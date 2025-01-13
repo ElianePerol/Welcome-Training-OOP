@@ -10,6 +10,5 @@ if (count($_POST) > 0 && isset($_POST['update-class'])) {
     $updateClass->updateClass($class_name, $class_id);
 
 }
-
 ?>
 

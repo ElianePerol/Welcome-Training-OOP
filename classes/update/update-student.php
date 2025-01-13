@@ -25,5 +25,4 @@ class UpdateStudent {
         $stmt->execute();
     }
 }
-
 ?>

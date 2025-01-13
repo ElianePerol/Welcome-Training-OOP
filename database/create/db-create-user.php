@@ -9,4 +9,5 @@ if (count($_POST) > 0) {
     $user_form->createUser();
 
 }
+
 ?>

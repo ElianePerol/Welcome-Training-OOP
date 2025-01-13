@@ -24,5 +24,4 @@ if (count($_POST) > 0) {
         $deleteEntry->delete('user', $_POST['delete-teacher']);
     }
 }
-
 ?>

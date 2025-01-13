@@ -19,5 +19,4 @@ if (count($_POST) > 0 && isset($_POST['update-schedule'])) {
     $teacher_id, $start_datetime, $end_datetime, $id);
 
 }
-
 ?>

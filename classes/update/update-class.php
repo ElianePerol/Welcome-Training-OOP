@@ -17,5 +17,4 @@ class UpdateClass {
         $stmt->execute();
     }
 }
-
 ?>

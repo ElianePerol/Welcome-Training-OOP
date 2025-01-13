@@ -49,3 +49,5 @@ class CreateSchedule {
         return $stmt_schedule->execute();
     }
 }
+
+?>

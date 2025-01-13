@@ -10,6 +10,5 @@ if (count($_POST) > 0 && isset($_POST['update-subject'])) {
     $updateSubject->updateSubject($subject_name, $subject_id);
 
 }
-
 ?>
 

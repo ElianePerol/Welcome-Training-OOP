@@ -67,30 +67,6 @@ class UserAuth {
     public function getRoleFromSession() {
         return isset($_SESSION['user_role']) ? $_SESSION['user_role'] : null;
     }
-
-    // Bit of code initially thought to get the schedule for a teacher
-    // private function setTeacherSchedule($teacherId) {
-    //     $current_time = date('Y-m-d H:i:s');
-    //     $sql = "SELECT s.id AS schedule_id, c.name AS class_name, sub.name AS subject_name
-    //             FROM schedule s
-    //             JOIN class c ON s.class_id = c.id
-    //             JOIN subject sub ON s.subject_id = sub.id
-    //             WHERE s.teacher_id = :teacher_id
-    //             AND :current_time BETWEEN s.start_datetime AND s.end_datetime";
-        
-    //     $stmt = $this->pdo->prepare($sql);
-    //     $stmt->bindParam(':teacher_id', $teacherId, PDO::PARAM_INT);
-    //     $stmt->bindParam(':current_time', $current_time, PDO::PARAM_STR);
-    //     $stmt->execute();
-
-    //     if ($schedule = $stmt->fetch()) {
-    //         $_SESSION['schedule_id'] = $schedule['schedule_id'];
-    //         $_SESSION['class_name'] = $schedule['class_name'];
-    //         $_SESSION['subject_name'] = $schedule['subject_name'];
-    //     } else {
-    //         $_SESSION['schedule_id'] = null;
-    //     }
-    // }
-
+    
 }
 ?>

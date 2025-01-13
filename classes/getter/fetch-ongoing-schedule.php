@@ -1,5 +1,4 @@
 <?php
-
 include_once "fetch-subject-per-schedule.php";
 include_once "fetch-class-per-schedule.php";
 include_once "fetch-teacher-per-schedule.php";
@@ -17,8 +16,8 @@ class FetchOngoingSchedules {
                 TIME(start_datetime) AS start_time, 
                 TIME(end_datetime) AS end_time 
             FROM schedule 
-            WHERE TIME(NOW()) BETWEEN TIME(start_datetime) AND TIME(end_datetime)
-            ORDER BY start_datetime ASC";
+            WHERE DATE(start_datetime) = DATE(NOW()) AND 
+                TIME(NOW()) BETWEEN TIME(start_datetime) AND TIME(end_datetime)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     
@@ -41,7 +40,8 @@ class FetchOngoingSchedules {
         $studentSchedule[] = [
             'schedule_id' => $ongoingSchedule['schedule_id'],
             'date' => $ongoingSchedule['date'],
-            'time' => $ongoingSchedule['start_time'] . ' - ' . $ongoingSchedule['end_time'],
+            'start_time' => $ongoingSchedule['start_time'],
+            'end_time' => $ongoingSchedule['end_time'],
             'subject' => $subject['subject_name'],
             'teacher' => ($teacher['first_name']) . ' ' . ($teacher['surname'])
         ];
@@ -65,7 +65,8 @@ class FetchOngoingSchedules {
         $teacherSchedule[] = [
             'schedule_id' => $ongoingSchedule['schedule_id'],
             'date' => $ongoingSchedule['date'],
-            'time' => $ongoingSchedule['start_time'] . ' - ' . $ongoingSchedule['end_time'],
+            'start_time' => $ongoingSchedule['start_time'],
+            'end_time' => $ongoingSchedule['end_time'],
             'subject' => $subject['subject_name'],
             'class' => $class['class_name']
         ];

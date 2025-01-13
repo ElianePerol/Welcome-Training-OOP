@@ -23,15 +23,15 @@ class AttendanceHandler {
         }
     }
 
-    public function SendSignatureRequest($schedule_id, $student_id) {
-        return "
-            <form action='' method='POST'>
-                <input type='hidden' name='schedule_id' value='$schedule_id' />
-                <input type='hidden' name='student_id' value='$student_id' />
-                <button type='submit' name='sign' class='btn btn-primary'>Sign</button>
-            </form>
-        ";
-    }
+    // public function SendSignatureRequest($schedule_id, $student_id) {
+    //     return "
+    //         <form action='' method='POST'>
+    //             <input type='hidden' name='schedule_id' value='$schedule_id' />
+    //             <input type='hidden' name='student_id' value='$student_id' />
+    //             <button type='submit' name='sign' class='btn btn-primary'>Sign</button>
+    //         </form>
+    //     ";
+    // }
 
     public function SignAttendance($schedule_id, $student_id) {
         $sql = "UPDATE attendance 
@@ -43,6 +43,33 @@ class AttendanceHandler {
             ':schedule_id' => $schedule_id,
             ':student_id' => $student_id,
         ]);
+    }
+
+    public function CheckAttendance ($schedule_id, $student_id) {
+        $sql = "SELECT marked_attendance, signed_attendance 
+                FROM attendance 
+                WHERE schedule_id = :schedule_id AND student_id = :student_id";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':schedule_id' => $schedule_id,
+            ':student_id' => $student_id,
+        ]);
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($result === false) {
+            return [
+                'marked_attendance' => false,
+                'signed_attendance' => false
+            ];
+        }
+    
+        return [
+            'marked_attendance' => (bool) $result['marked_attendance'],
+            'signed_attendance' => !is_null($result['signed_attendance'])
+        ];
+        
     }
 }
 

@@ -58,31 +58,41 @@ include_once "../database/attendance/db-mark-attendance.php";
       </div>
 
       <div class="d-flex justify-content-center align-items-center flex-column">
-        <p class="text-center"><?= 'Classe : ' . $current_class_name ?></p>
-        <p class="text-center"><?= 'Matière : ' . $current_subject_name ?></p>
-        <p><?= (new DateTime($schedule['start_time']))->format('H:i') . ' - ' . 
-               (new DateTime($schedule['end_time']))->format('H:i') ?></p>
+        <p class="text-center"><?= $current_class_name ?></p>
+        <p class="text-center"><?= $current_subject_name ?></p>
+        <?php if (!empty($ongoingSchedule)) :?>
+          <p><?= (new DateTime($ongoingSchedule[0]['date']))->format('d/m/Y') . ' - ' . 
+                 (new DateTime($ongoingSchedule[0]['start_time']))->format('H:i') . ' - ' . 
+                 (new DateTime($ongoingSchedule[0]['end_time']))->format('H:i') ?>
+          </p>
+        <?php endif; ?>
       </div>
 
       <div class="m-2 mb-4 mw-75 overflow-auto">
         <?php if (empty($ongoingSchedule)): ?>
-          <p class="text-center text-secondary">Aucune classe en cours actuellement</p>
+          <p class="text-center text-secondary">Pas de cours actuellement</p>
         
         <!-- Liste des étudiants pour faire l'appel en cochant le nom -->
         <?php else: ?>
           <form action="" method="POST">
           <ul class="list-group mb-3">
                 <?php foreach ($students as $student): ?>
-                    <!-- Hidden input for the default value of 0 (if not checked) -->
-                    <input type="hidden" name="marked_attendance[<?= $student['student_id'] ?>]" value="0" />
+
+                    <!-- Input caché de valeur 0 par défaut, passe à valeur 1 si coché
+                    pour être injecté dans la table attendance, colonne marked_attendance -->
+                    <input type="hidden" 
+                            name="marked_attendance[<?= $student['student_id'] ?>]"
+                            id="student<?= $student['student_id'] ?>" 
+                            value="0" />
                     <li class="list-group-item custom-checkbox d-flex justify-content-between align-items-center">
                         <label class="form-check-label" for="student<?= $student['student_id'] ?>">
                             <?= $student['first_name'] . " " . $student['surname'] ?>
                         </label>
-                        <!-- Checkbox input that will return 1 when checked -->
+
                         <input class="form-check-input" type="checkbox"
                             name="marked_attendance[<?= $student['student_id'] ?>]" 
-                            id="student<?= $student['student_id'] ?>" value="1" />
+                            id="student<?= $student['student_id'] ?>" 
+                            value="1" />
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -92,7 +102,7 @@ include_once "../database/attendance/db-mark-attendance.php";
             </div>
 
           </form>
-        <!-- <?php endif; ?> -->
+        <?php endif; ?>
       </div>
     </div>
 

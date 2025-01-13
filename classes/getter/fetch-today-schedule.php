@@ -1,5 +1,4 @@
 <?php
-
 include_once "fetch-subject-per-schedule.php";
 include_once "fetch-class-per-schedule.php";
 include_once "fetch-teacher-per-schedule.php";

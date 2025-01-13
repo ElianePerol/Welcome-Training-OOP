@@ -4,19 +4,19 @@ include_once "../classes/getter/fetch-ongoing-schedule.php";
 include_once "../classes/getter/fetch-all-students-per-schedule.php";
 
 $fetchTodaySchedules = new FetchTodaySchedules($pdo);
-$fetchOngoingSchedules = new FetchOngoingSchedules($pdo);
-
 $schedules = $fetchTodaySchedules->teacherSchedules();
+
+$fetchOngoingSchedules = new FetchOngoingSchedules($pdo);
+$ongoingSchedule = $fetchOngoingSchedules->teacherSchedule(); 
+
 $no_class_today = empty($schedules);
 
-$ongoingSchedule = $fetchOngoingSchedules->teacherSchedule();
-var_dump($ongoingSchedule);
 if (empty($ongoingSchedule)) {
-    $current_class_name = "Aucune classe en cours";
-    $current_subject_name = "Aucune matière en cours";
+    $current_class_name = "";
+    $current_subject_name = "";
 } else {
-    $current_class_name = $ongoingSchedule[0]['class'] ?? "Aucune classe en cours";
-    $current_subject_name = $ongoingSchedule[0]['subject'] ?? "Aucune matière en cours";
+    $current_class_name = "Classe : " . $ongoingSchedule[0]['class'];
+    $current_subject_name = "Matière : " . $ongoingSchedule[0]['subject'];
 }
 
 $students = [];

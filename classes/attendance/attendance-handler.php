@@ -11,27 +11,17 @@ class AttendanceHandler {
         foreach ($attendance as $student_id => $marked_attendance) {
             $sql = "INSERT INTO attendance (schedule_id, student_id, 
                     marked_attendance, signed_attendance)
-                VALUES (:schedule_id, :student_id, :marked_attendance, NULL)
-                ON DUPLICATE KEY UPDATE marked_attendance = :marked_attendance";
+                VALUES (:schedule_id, :student_id, :marked_attendance, NULL)";
+                // -- ON DUPLICATE KEY UPDATE marked_attendance = :updated_marked_attendance
             $stmt = $this->pdo->prepare($sql);
             
             $stmt->execute([
                 ':schedule_id' => $schedule_id,
                 ':student_id' => $student_id,
-                ':marked_attendance' => $marked_attendance,
+                ':marked_attendance' => $marked_attendance,   
             ]);
         }
     }
-
-    // public function SendSignatureRequest($schedule_id, $student_id) {
-    //     return "
-    //         <form action='' method='POST'>
-    //             <input type='hidden' name='schedule_id' value='$schedule_id' />
-    //             <input type='hidden' name='student_id' value='$student_id' />
-    //             <button type='submit' name='sign' class='btn btn-primary'>Sign</button>
-    //         </form>
-    //     ";
-    // }
 
     public function SignAttendance($schedule_id, $student_id) {
         $sql = "UPDATE attendance 
@@ -43,6 +33,19 @@ class AttendanceHandler {
             ':schedule_id' => $schedule_id,
             ':student_id' => $student_id,
         ]);
+    }
+
+    public function isAttendanceMarked($schedule_id) {
+        $sql = "SELECT COUNT(*) AS count FROM attendance 
+            WHERE schedule_id = :schedule_id";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':schedule_id' => $schedule_id,
+        ]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'] > 0;
     }
 
     public function CheckAttendance ($schedule_id, $student_id) {
@@ -71,6 +74,31 @@ class AttendanceHandler {
         ];
         
     }
+
+    public function ReturnAbsences($class_id, $student_id) {
+        $sql = "SELECT a.student_id, a.schedule_id, 
+                    s.start_datetime AS date, 
+                    s.start_datetime AS time,
+                    sub.name AS subject_name, 
+                    CONCAT(t.first_name, ' ', t.surname) AS teacher_name
+                FROM attendance a
+                INNER JOIN schedule s ON a.schedule_id = s.id
+                INNER JOIN subject sub ON s.subject_id = sub.id
+                INNER JOIN user t ON s.teacher_id = t.id
+                WHERE (a.marked_attendance = 0 OR (a.marked_attendance = 1 AND a.signed_attendance IS NULL))
+                AND s.class_id = :class_id
+                AND a.student_id = :student_id
+                ORDER BY s.start_datetime";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([ 
+            ':class_id' => $class_id,
+            ':student_id' => $student_id 
+        ]);
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }
 
 ?>

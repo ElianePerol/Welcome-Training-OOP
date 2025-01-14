@@ -56,7 +56,7 @@ include_once "../database/db-display-lists.php";
                                         </form>
                                     </tr>
 
-                                    <!-- Modal for student list -->
+                                    <!-- Modal liste d'étudiants -->
                                     <div class="modal fade" id="studentsModal-<?php echo $class['id']; ?>" tabindex="-1" aria-labelledby="studentsModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -65,21 +65,16 @@ include_once "../database/db-display-lists.php";
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <ul">
-                                                        <?php 
-                                                            // Fetch students for this class
+                                                    <ul>
+                                                        <?php                                                             
                                                             $students = $fetchStudents->fetchAllStudentsPerClassID($class['id']);
                                                             if (count($students) > 0):
-                                                                foreach ($students as $student): 
-                                                        ?>
+                                                                foreach ($students as $student): ?>
                                                                 <li class="list-group-item">
                                                                     <?php echo htmlspecialchars($student['first_name'] . ' ' . $student['surname']); ?>
                                                                 </li>
-                                                        <?php 
-                                                                endforeach;
-                                                            else:
-                                                        ?>
-                                                            <li class="list-group-item">Aucun étudiant trouvé</li>
+                                                                <?php endforeach; ?>
+                                                                <li class="list-group-item">Aucun étudiant trouvé</li>
                                                         <?php endif; ?>
                                                     </ul>
                                                 </div>

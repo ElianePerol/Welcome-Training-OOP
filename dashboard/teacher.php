@@ -69,9 +69,16 @@ include_once "../database/attendance/db-mark-attendance.php";
       </div>
 
       <div class="m-2 mb-4 mw-75 overflow-auto">
+        <!-- Si pas de cours -->
         <?php if (empty($ongoingSchedule)): ?>
           <p class="text-center text-secondary">Pas de cours actuellement</p>
         
+        <!-- Si appel terminé -->
+        <?php elseif ($attendanceFinished): ?>
+          <div class="text-success text-center" role="alert">
+              Appel terminé
+          </div>
+       
         <!-- Liste des étudiants pour faire l'appel en cochant le nom -->
         <?php else: ?>
           <form action="" method="POST">

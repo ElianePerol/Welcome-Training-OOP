@@ -14,20 +14,18 @@ class UserAuth {
     }
 
     public function login($email, $password) {
-        // Fetch user by their email
         $sql = "SELECT u.*, c.name AS class_name 
                 FROM `user` u
                 LEFT JOIN class c ON u.class_id = c.id
                 WHERE u.email = :email";
+                
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
-            // Valid credentials, initialize session
             $this->initializeSession($user);
-            // Redirect based on role
             $redirectUrl = $this->getRedirectUrl($user['role']);
             new Redirect($redirectUrl);
         } else {
@@ -44,11 +42,6 @@ class UserAuth {
         $_SESSION['user_surname'] = $user['surname'];
         $_SESSION['class_name'] = isset($user['class_name']) ? $user['class_name'] : 'No class assigned';
 
-
-        // Bit of code initially thought to get the schedules ids for a teacher
-        // if ($user['role'] === 'enseignant') {
-        //     $this->setTeacherSchedule($user['id']);
-        // }
     }
 
     private function getRedirectUrl($role) {

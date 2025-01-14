@@ -1,7 +1,8 @@
 <?php 
 include_once "../common/header.php";
 include_once "../database/db-connection.php";
-include_once "../database/dashboard/db-student-dashboard.php"
+include_once "../database/dashboard/db-student-dashboard.php";
+include_once "../database/attendance/db-sign-attendance.php";
 ?>
 
 <main class="bg-light d-flex align-items-center vh-100">
@@ -83,8 +84,8 @@ include_once "../database/dashboard/db-student-dashboard.php"
             
             <!-- Affiche un bouton "Signer" si l'étudient est présent mais n'a pas signé -->
             <?php else: ?>
-            <form action="" method="POST">
-              <input type="hidden" name="schedule_id" value="<?= $schedules[0]['schedule_id'] ?>" />
+            <form class="text-center" action="" method="POST">
+              <input type="hidden" name="schedule_id" value="<?= $schedule_id ?>" />
               <button type="submit" name="sign" class="btn rounded-pill">Signer</button>
             </form>
             <?php endif; ?>

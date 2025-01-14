@@ -75,7 +75,7 @@ $className = isset($_SESSION['class_name']) ? $_SESSION['class_name'] : '';
                 <?php elseif ($userRole === 'enseignant'): ?>
                     <a href="../dashboard/teacher.php" class="nav-link bg-light border-0 fw-bold rounded-pill px-3 py-1">Accueil</a>
                     <a href="../schedule/schedule-teacher.php" class="nav-link bg-light border-0 fw-bold rounded-pill px-3 py-1">Emploi du temps</a>
-                    <a href="../list/list-class-teacher.php" class="nav-link bg-light border-0 fw-bold rounded-pill px-3 py-1">Classes</a>
+                    <a href="../display-list/list-classes-per-teacher.php" class="nav-link bg-light border-0 fw-bold rounded-pill px-3 py-1">Classes</a>
                 <?php endif; ?>
 
                 <!-- Logout button -->

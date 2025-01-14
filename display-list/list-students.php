@@ -4,12 +4,13 @@ include_once "../database/db-connection.php";
 include_once "../database/update/db-update-student.php";
 include_once "../database/delete/db-delete-entry.php";
 include_once "../database/db-display-lists.php";
+include_once "../classes/attendance/attendance-handler.php";
 ?>
 
 <main class="bg-light d-flex align-items-center vh-100">
     <div class="container">
         <div class="row justify-content-center mt-4">
-            <div class="col-md-12 col-lg-10">
+            <div class="col-md-12 col-lg-12">
                 <div class="card bg-white border-0 shadow">
 
                     <div class="schedule-header rounded-top py-2">
@@ -25,6 +26,7 @@ include_once "../database/db-display-lists.php";
                                     <th scope="col" class="text-center">Nom</th>
                                     <th scope="col" class="text-center">Email</th>
                                     <th scope="col" class="text-center">Classe</th>
+                                    <th scope="col" class="text-center">Absences</th>
                                     <th scope="col" class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -53,6 +55,11 @@ include_once "../database/db-display-lists.php";
                                                 </select> 
                                             </td>
                                             <td class="text-center">
+                                                <button type="button" class="btn btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#attendanceModal<?php echo $student['id']; ?>">
+                                                    <i class="fa-solid fa-calendar-check"></i> Consulter
+                                                </button>
+                                            </td>
+                                            <td class="text-center">
                                                 <div class="d-flex justify-content-center">
                                                     <button type="submit" name="update-student" value="<?php echo $student['id']; ?>" class="btn btn-sm me-2"
                                                             onclick="return confirm('Êtes-vous sûr de vouloir modifier cet étudiant ?')">
@@ -66,6 +73,43 @@ include_once "../database/db-display-lists.php";
                                             </td>
                                         </form>
                                     </tr>
+
+                                    <!-- Modal absences -->
+                                    <div class="modal fade" id="attendanceModal<?php echo $student['id']; ?>" tabindex="-1" aria-labelledby="attendanceModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="attendanceModalLabel">Absences de <?php echo $student['first_name'] . ' ' . $student['surname']; ?></h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <?php
+                                                        $attendanceHandler = new AttendanceHandler($pdo);
+                                                        $absences = $attendanceHandler->ReturnAbsences($student['class_id'], $student['id']);
+                                                        
+                                                        if (!empty($absences)) {
+                                                            foreach ($absences as $absence) {
+                                                                $date = new DateTime($absence['date']);
+                                                                $formattedDate = $date->format('d/m/Y'); // Formats the date as dd/mm/YYYY
+                                                                $formattedTime = $date->format('H\hi');
+
+                                                                echo "<p><strong>Date :</strong> " . $formattedDate . "<br>";
+                                                                echo "<strong>Horaire :</strong> " . $formattedTime . "<br>";
+                                                                echo "<strong>Matière :</strong> " . $absence['subject_name'] . "<br>";
+                                                                echo "<strong>Enseignant :</strong> " . $absence['teacher_name'] . "</p><hr>";
+                                                            }
+                                                        } else {
+                                                            echo "<p>Aucune absence enregistrée.</p>";
+                                                        }
+                                                    ?>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 <?php endforeach; ?>
                             </tbody>
 
@@ -77,7 +121,6 @@ include_once "../database/db-display-lists.php";
         </div>
     </div>
 </main>
-
 
 <?php 
 include_once "../common/footer.php";

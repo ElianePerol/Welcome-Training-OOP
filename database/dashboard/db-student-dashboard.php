@@ -9,8 +9,6 @@ $schedules = $fetchTodaySchedules->studentSchedules();
 $fetchOngoingSchedules = new FetchOngoingSchedules($pdo);
 $ongoingSchedule = $fetchOngoingSchedules->studentSchedule();
 
-$attendanceHandler = new AttendanceHandler($pdo);
-
 $no_class_today = empty($schedules);
 
 if (empty($ongoingSchedule)) {
@@ -22,10 +20,13 @@ if (empty($ongoingSchedule)) {
 
     $schedule_id = $ongoingSchedule[0]['schedule_id'];
     $student_id = $_SESSION['user_id'];
+
+    $attendanceHandler = new AttendanceHandler($pdo);
     $attendanceStatus = $attendanceHandler->CheckAttendance($schedule_id, $student_id);
 
     $marked_attendance = $attendanceStatus['marked_attendance'];
     $is_signed = $attendanceStatus['signed_attendance'];
+
 }
 
 ?>

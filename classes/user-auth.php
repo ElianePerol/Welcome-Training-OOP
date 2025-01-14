@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/../database/db-connection.php';
 require_once __DIR__ . '/redirect.php';
+require_once __DIR__ . '/user.php';
 
+// Démarre la session si elle ne l'est pas encore
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -41,7 +43,7 @@ class UserAuth {
         $_SESSION['user_first_name'] = $user['first_name'];
         $_SESSION['user_surname'] = $user['surname'];
         $_SESSION['class_name'] = isset($user['class_name']) ? $user['class_name'] : 'No class assigned';
-
+        $_SESSION['class_id'] = $user['class_id'];
     }
 
     private function getRedirectUrl($role) {
@@ -56,10 +58,6 @@ class UserAuth {
                 return "/login.php";
         }
     }
-
-    public function getRoleFromSession() {
-        return isset($_SESSION['user_role']) ? $_SESSION['user_role'] : null;
-    }
-    
 }
+
 ?>

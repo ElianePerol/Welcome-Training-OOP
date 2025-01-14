@@ -74,6 +74,8 @@ include_once "../database/db-display-lists.php";
                                                                     <?php echo htmlspecialchars($student['first_name'] . ' ' . $student['surname']); ?>
                                                                 </li>
                                                                 <?php endforeach; ?>
+                                                            
+                                                        <?php else : ?>    
                                                                 <li class="list-group-item">Aucun étudiant trouvé</li>
                                                         <?php endif; ?>
                                                     </ul>

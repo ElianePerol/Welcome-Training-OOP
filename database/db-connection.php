@@ -13,9 +13,4 @@ error_reporting(E_ALL);
 $dbConnection = new DatabaseConnection();
 $pdo = $dbConnection->getPDO();
 
-// Test
-// $stmt = $pdo->query("SELECT * FROM user");
-// $result = $stmt->fetch();
-// echo "Database connection successful.\n";
-// var_dump($result);
 ?>

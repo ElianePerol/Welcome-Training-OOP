@@ -14,11 +14,6 @@ Failed ideas :
 
 Functionalities :
 
-    Add a display of the attendance :
-        Admin dashboard : per class, per day, per schedule : list of absent student
-        Teacher dashboard : same
-        Student : list of day/schedule
-
     When creating a schedule, check there's no clashing schedule for the selected class and Teacher
 
     Error message when wrong email/password on login
@@ -29,45 +24,14 @@ Functionalities :
 
     Add a weekly view of the schedules, using calendar js ?
 
+    Display a list of subject taught per teacher
+
+    Display a list of teacher per subject
+
+    Prevent access to teacher or admin reserved url when connected under an inappropriate
+    user, by just typing the url in the browser
+
 Next steps :
 
-    Display schedules, classes needed :
-        FetchSubjectPerSchedule (to return the subject of a given schedule ID)  
-        FetchTeacherPerSchedule (to return the teacher of a given schedule ID)
-        FetchClassPerSchedule (to return the class of a given schedule ID)
-        FetchAllStudentsPerSchedule (to return all the students of a given schedule ID)
-
-
-        FetchTodaySchedules (to return and display list of schedules for the ongoing day) :
-            methods :
-                FetchTodaySchedule (to return list of todays' schedules (date, start_time, end_time, subjects, classes and teachers))  
-                StudentSchedule (to return list of schedules (date, time, subject and teacher))
-                TeacherSchedule (to return list of schedules (date, time, subject and class))
-
-        FetchOngoingSchedules (to return and display the schedules going on at the current time) :
-            methods :
-                FetchOngoingSchedule (to return the ongoing schedule (date, start_time, end_time, subjects, classes and teachers))  
-                StudentSchedule (to return ongoing schedules (date, time, subject and teacher))
-                TeacherSchedule (to return ongoing schedules (date, time, subject and class))
-
-    Mark attendance for student of ongoing schedule, classes needed :
-
-        class AttendanceHandler :
-            methods :
-                MarkAttendance (to feeds the attendance table with 0/1 into the marked_attendance column (other columns are id, student_id, 
-                    schedule_id and signed_attendance which is left NULL) using a checkbox submitted form on the teacher dashboard and the retrieved ongoing schedule_id, 
-                    student_id list from DisplayOngoingSchedule object with TeacherSchedule method)
-                SendSignatureRequest (to display a "sign" button on the student dashboard, using the MarkAttendance method, with attributes schedule_id 
-                    and student_id retrieved from DisplayOngoingSchedule object and TeacherSchedule method)
-                SignAttendance (to feed the attendance table with a timestamp into the signed_attendance column, using MarkAttendance method, with attributes schedule_id 
-                    and student_id retrieved from DisplayOngoingSchedule object and StudentsSchedule method)
-    
-    Display Attendance :
-        class Absence :
-            methods :
-                FetchAllMissedSchedule (to return the schedule IDs of all the missed schedules per student_id, using the attendance table : absence is marked_attendance == 0
-                    or if signed_attendance == NULL)
-                DisplayStudentAbsences (to display a list of the absences, with date, time, subject and teacher names (on "Absences" page for students, on "Students" page for 
-                    teachers and admin, using a modal))
-
+    Add a weekly view of the schedules, using calendar js ?
         

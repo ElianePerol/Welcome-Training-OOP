@@ -1,16 +1,17 @@
 <?php 
 include_once "../common/header.php";
 include_once "../database/db-connection.php";
-include_once "../database/db-teacher-queries.php"; // Inclure la classe
+include_once "../classes/getter/fetch-all-classes-per-teacher.php";
+include_once "../classes/getter/fetch-all-students.php";
 
-// Créer une instance de la classe TeacherQueries
+
+$teacher_id = $_SESSION['user_id']; 
+
 $teacherQueries = new FetchAllClassesPerTeacher($pdo);
-
-// Récupérer l'ID du professeur connecté
-$teacher_id = $_SESSION['teacher_id']; 
-
-// Obtenir les classes enseignées par le professeur
 $classes = $teacherQueries->fetchClassesByTeacher($teacher_id);
+
+$studentQueries = new FetchAllStudents($pdo);
+
 ?>
 
 <main class="bg-light d-flex align-items-center vh-100">
@@ -55,18 +56,14 @@ $classes = $teacherQueries->fetchClassesByTeacher($teacher_id);
                                                 <div class="modal-body">
                                                     <ul>
                                                         <?php
-                                                            // Récupérer les étudiants pour cette classe
-                                                            $students = $teacherQueries->fetchClassesByTeacher($class['id']);
+                                                            $students = $studentQueries->fetchAllStudentsPerClassID($class['id']);
                                                             if (count($students) > 0):
-                                                                foreach ($students as $student):
-                                                        ?>
+                                                                foreach ($students as $student): ?>
                                                                 <li class="list-group-item">
                                                                     <?php echo htmlspecialchars($student['first_name'] . ' ' . $student['surname']); ?>
                                                                 </li>
-                                                        <?php
-                                                                endforeach;
-                                                            else:
-                                                        ?>
+                                                        <?php endforeach; ?>
+                                                        <?php else: ?>
                                                                 <li class="list-group-item">Aucun étudiant trouvé</li>
                                                         <?php endif; ?>
                                                     </ul>

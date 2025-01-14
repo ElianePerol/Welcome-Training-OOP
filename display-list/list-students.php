@@ -90,7 +90,7 @@ include_once "../classes/attendance/attendance-handler.php";
                                                         if (!empty($absences)) {
                                                             foreach ($absences as $absence) {
                                                                 $date = new DateTime($absence['date']);
-                                                                $formattedDate = $date->format('d/m/Y'); // Formats the date as dd/mm/YYYY
+                                                                $formattedDate = $date->format('d/m/Y');
                                                                 $formattedTime = $date->format('H\hi');
 
                                                                 echo "<p><strong>Date :</strong> " . $formattedDate . "<br>";

@@ -23,10 +23,15 @@ Functionalities :
 
     Filter to display data in the wanted order (alphabetical for example)
 
-    Display a list of subject taught per teacher
+    Display a list of subjects taught per teacher
 
-    Display a list of teacher per subject
+    Display a list of teachers teaching a subject
 
     Prevent access to teacher or admin reserved url when connected under an inappropriate
     user, by just typing the url in the browser
         
+    Allow changing password via email sent to user
+
+    Allow physical signature, with an image saved on a server and the img url in the dashboard
+
+    Improve responsive

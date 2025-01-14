@@ -3,8 +3,6 @@ include_once "../common/header.php";
 include_once "../database/db-connection.php";
 include_once "../classes/attendance/attendance-handler.php";
 
-var_dump($_SESSION);
-
 $student_id = $_SESSION['user_id'];
 $class_id = $_SESSION['class_id'];
 

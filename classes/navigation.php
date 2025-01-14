@@ -12,12 +12,12 @@ class Navigation {
         ],
         'etudiant' => [
             ['label' => 'Accueil', 'href' => '../dashboard/student.php'],
-            ['label' => 'Emploi du temps', 'href' => '../schedule/schedule-student.php'],
+            ['label' => 'Emploi du temps', 'href' => '../weekly-schedule/weekly-student-schedule.php'],
             ['label' => 'Absences', 'href' => '../display-list/list-student-absences.php'],
         ],
         'enseignant' => [
             ['label' => 'Accueil', 'href' => '../dashboard/teacher.php'],
-            ['label' => 'Emploi du temps', 'href' => '../schedule/schedule-teacher.php'],
+            ['label' => 'Emploi du temps', 'href' => '../weekly-schedule/weekly-teacher-schedule.php'],
             ['label' => 'Classes', 'href' => '../display-list/list-classes-per-teacher.php'],
         ]
     ];

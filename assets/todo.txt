@@ -12,6 +12,7 @@ Failed ideas :
     so maybe it was updatin with their class's id, i haven't explored this option) 
     of the data to be in every input instead of the actually updated data
 
+
 Functionalities :
 
     When creating a schedule, check there's no clashing schedule for the selected class and Teacher
@@ -22,16 +23,10 @@ Functionalities :
 
     Filter to display data in the wanted order (alphabetical for example)
 
-    Add a weekly view of the schedules, using calendar js ?
-
     Display a list of subject taught per teacher
 
     Display a list of teacher per subject
 
     Prevent access to teacher or admin reserved url when connected under an inappropriate
     user, by just typing the url in the browser
-
-Next steps :
-
-    Add a weekly view of the schedules, using calendar js ?
         

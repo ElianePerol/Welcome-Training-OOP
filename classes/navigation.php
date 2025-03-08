@@ -23,7 +23,7 @@ class Navigation {
     ];
 
     // Méthode qui retourne le lien en fonction du rôle via une référence php
-    public function &getLinks($role) {
+    public function getLinks($role) {
         return $this->links[$role];
     }
 }

@@ -7,9 +7,9 @@ class RenderHeader {
     private $user;
     private $navigation;
 
-    public function __construct(User &$user, Navigation &$navigation) {
-        $this->user = &$user;
-        $this->navigation = &$navigation;
+    public function __construct(User $user, Navigation $navigation) {
+        $this->user = $user;
+        $this->navigation = $navigation;
     }
 
     public function getUserName() {

@@ -3,10 +3,10 @@ include_once "session-start.php";
 include_once "../classes/user-auth.php";
 include_once "../classes/render-header.php";
 
-$userFirstName = &$_SESSION['user_first_name'];
-$userSurname = &$_SESSION['user_surname'];
-$userRole = &$_SESSION['user_role'];
-$className = &$_SESSION['class_name'];
+$userFirstName = $_SESSION['user_first_name'];
+$userSurname = $_SESSION['user_surname'];
+$userRole = $_SESSION['user_role'];
+$className = $_SESSION['class_name'];
 
 $user = new User($userFirstName, $userSurname, $userRole, $className);
 $navigation = new Navigation();

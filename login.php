@@ -25,7 +25,7 @@ include_once "database/db-user-auth.php";
                         <img src="assets/img/logo.png" class="img-fluid w-50" alt="Logo Welcome Training">
                     </div>
 
-                    <h3 class="text-center text-secondary mb-5">Connexion BEEP</h3>
+                    <h3 class="text-center text-secondary mb-5">Connexion</h3>
 
                     <form action="database/db-user-auth.php" method="post">
                         <div class="mb-3">

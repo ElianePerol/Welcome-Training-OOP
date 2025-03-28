@@ -5,6 +5,12 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$emailPassword = getenv('EMAIL_PASSWORD');
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = $_POST['nom'];
     $email = $_POST['email'];

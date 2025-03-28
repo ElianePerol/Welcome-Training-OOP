@@ -1,5 +1,3 @@
-# Ignorer le fichier .env
 .env
 
-# Ignorer le dossier vendor (si vous ne voulez pas pousser les dépendances)
 /vendor/

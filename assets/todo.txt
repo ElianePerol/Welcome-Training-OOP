@@ -1,3 +1,5 @@
+Start php : php -S localhost:8080  
+
 Bugs : 
 
     Display :
@@ -14,6 +16,8 @@ Failed ideas :
 
 
 Functionalities :
+
+    Test unitaire : requiert un outil, celui que je connais est PEST, j'installerais composer, etc.
 
     When creating a schedule, check there's no clashing schedule for the selected class and Teacher
 

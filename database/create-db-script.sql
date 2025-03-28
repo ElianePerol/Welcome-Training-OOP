@@ -41,6 +41,6 @@ CREATE TABLE attendance (
     student_id INT NOT NULL,
     marked_attendance BOOLEAN NOT NULL,
     signed_attendance DATETIME DEFAULT NULL,
-    FOREIGN KEY (schedule_id) REFERENCES schedule(id) ON DELETE CASCADE
+    FOREIGN KEY (schedule_id) REFERENCES schedule(id) ON DELETE CASCADE,
     FOREIGN KEY (student_id) REFERENCES user(id) ON DELETE CASCADE,
 );

@@ -1,6 +1,6 @@
 <footer class="container-fluid py-1 position-fixed fixed-bottom">
         <div class="d-flex justify-content-center align-items-center">
-            <a href="#" class="text-white text-decoration-none">Mentions légales</a>
+            <span class="text-white text-decoration-none">© 2025 Eliane Perol | <a href="../dashboard/legal.php" class="text-white text-decoration-none">Mentions légales</a></span>
         </div>
     </footer>    
     

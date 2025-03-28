@@ -13,4 +13,6 @@ error_reporting(E_ALL);
 $dbConnection = new DatabaseConnection();
 $pdo = $dbConnection->getPDO();
 
+// var_dump($pdo);
+
 ?>

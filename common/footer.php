@@ -1,6 +1,9 @@
 <footer class="container-fluid py-1 position-fixed fixed-bottom">
         <div class="d-flex justify-content-center align-items-center">
-            <span class="text-white text-decoration-none">© 2025 Eliane Perol | <a href="../dashboard/legal.php" class="text-white text-decoration-none">Mentions légales</a></span>
+            <span class="text-white text-decoration-none">© 2025 Eliane Perol | 
+              <a href="../dashboard/legal.php" class="text-white text-decoration-none">Mentions légales</a> | 
+              <a href="../create-form/support.php" class="text-white text-decoration-none">Demande de support</a>
+            </span>
         </div>
     </footer>    
     

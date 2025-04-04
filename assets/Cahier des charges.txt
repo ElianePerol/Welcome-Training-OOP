@@ -1,110 +1,76 @@
-# Cahier des charges - Application web de gestion de classes avec signature en ligne
+# Welcome Training – Application de gestion des classes et des présences
 
-## 1. Objectifs de l'application
-L'application doit permettre les fonctionnalités suivantes :
-- **Gestion des utilisateurs** : enseignants, élèves et administrateurs.
-- **Organisation des classes** : CRUD des affectations des élèves et des enseignants aux classes.
-- **Gestion des matières et des emplois du temps** : configuration des matières et des horaires pour chaque classe.
-- **Signature en ligne** : les utilisateurs pourront signer électroniquement pour valider leur présence.
+## Cahier des charges
 
-## 2. Fonctionnalités
+### Contexte
+Le client nous a mandaté pour développer une application web de gestion des classes et des présences intégrant un système de validation des présences via un bouton de signature.  
+L’application doit permettre de centraliser la gestion des utilisateurs (**enseignants et élèves**), des matières, des classes et des emplois du temps, ainsi que la validation des présences, avec une **traçabilité précise** grâce à l’enregistrement de l’horodatage.
 
-### 2.1 Profils utilisateurs
+### Objectif
+Fournir une solution complète qui :
+- Gère efficacement les utilisateurs (**administrateurs, enseignants, élèves**) et leurs droits d’accès.
+- Organise les **classes, matières et emplois du temps** de manière intuitive.
+- Permet la **validation des présences** par un **bouton de signature** visible uniquement lorsque l’enseignant a confirmé la présence de l’élève, et enregistre un **horodatage** dans la base de données.
 
-   **Administrateur :**
-   - Gestion complète du système : création et gestion des utilisateurs (enseignants, élèves) et des classes.
-   - Gestion des matières et des emplois du temps.
-   - Gestion des signatures de présence.
+### Public cible
+Établissements d’enseignement et responsables pédagogiques souhaitant **moderniser et sécuriser** la gestion des classes et des présences.
 
-   **Enseignant :**
-   - Consultation des emplois du temps et des classes.
-   - Génération, consultation et validation des signatures de présence.
+### Expression des besoins
+Le client souhaite disposer d’une application permettant de :
+- Assurer une **gestion centralisée et optimisée** des utilisateurs et des classes.
+- Offrir une **interface conviviale et sécurisée** pour la gestion des emplois du temps et des affectations.
+- Intégrer un mécanisme de validation des présences basé sur un **bouton de signature** (affiché uniquement après confirmation de l’enseignant) qui, lorsqu’il est cliqué, **enregistre automatiquement l’horodatage** dans la base de données.
 
-   **Élève :**
-   - Consultation de l'emploi du temps.
-   - Signature de présence et consultation de l'historique.
+---
 
-#### 2.2 Connexion / Authentification
-   - **Système d'authentification sécurisé** : basé sur des emails et des mots de passe chiffrés (utilisation de la fonction `password_hash()`).
-   - **Gestion des rôles** : administrateur, enseignant et élève avec des fonctionnalités spécifiques.
-   - **Récupération de mot de passe** : réinitialisation du mot de passe via un email sécurisé.
+## Fonctionnalités
 
-### 2.3 Classes
-   - **CRUD des classes ** Administrateur :
-      - Nom de la classe (ex. : BTS SIO 2 SLAM).
-      - Année scolaire (ex : 2024-2025)
-      - Liste des matières enseignées.
+### MVP (Minimum Viable Product)
+- **Gestion des utilisateurs** :
+  - Création, modification et suppression des comptes pour **administrateurs, enseignants et élèves**.
+  - Authentification sécurisée (**email et mot de passe chiffré**) avec gestion des rôles.
+- **Gestion des classes** :
+  - Création, modification et suppression des classes.
+  - Affectation des **enseignants et des élèves** aux classes.
+- **Gestion des matières et emplois du temps** :
+  - Configuration des matières et définition des créneaux horaires par classe.
+  - Consultation de l’emploi du temps via un **espace personnalisé**.
+- **Validation des présences** :
+  - Mise en place d’un **bouton de signature**, visible uniquement lorsque l’enseignant a confirmé la présence.
+  - Enregistrement de l’**horodatage** du clic dans la base de données pour assurer la traçabilité.
 
-   - **Affectation des enseignants et élèves ** Administrateur :
-      - Assigner des enseignants à une classe.
-      - Assigner des élèves à une classe.
+### MLP (Minimum Lovable Product)
+- **Visualisation en temps réel** des présences et des signatures.
+- **Interface responsive** et design moderne grâce à **Bootstrap**.
+- **Historique détaillé** des signatures et possibilité de **filtrer les données** par classe ou par période.
 
-   - **Visualisation des classes ** Administrateur & enseignants :
-      - Consulter les informations sur les classes : liste des élèves, matières, emploi du temps.
+---
 
-### 2.4 Matières et emploi du temps
-   - **Gestion des matières** Administrateur
-      - CRUD les matières pour chaque classe.
-      - Assignées à enseignants.
+## Contraintes techniques
 
-   - **Emploi du temps :**
-      - Administrateur : définir des créneaux horaires pour chaque matière pour chaque classe.
-      - Enseignants et élèves : visualisation de l'emploi du temps (format hebdomadaire) via espace personnel.
+### Développement
+- **PHP orienté objet (POO)** afin d’assurer une structure **modulaire et évolutive**.
 
-### 2.5 Signature en ligne
+### Base de données
+- **MySQL** avec une modélisation relationnelle robuste (**MCD, MLD, MPD**).
 
-   - **Signature électronique** :
-      - La demande de signature sera déclenchée par l'enseignant et envoyée via l'espace personnel et/ou mail.
-      - La signature devra être **sécurisée** et accompagnée d’un horodatage pour assurer la validité du processus.
-      - La signature sera assignée à son enseignant, élève, matière et créneaux horaire.
-      - Chaque utilisateur pourra consulter l'historique de ses signatures.
+### Environnements
+- **Local** : Développement sous **XAMPP** (*Apache, PHP, MySQL, PhpMyAdmin*).
+- **Production** : Déploiement sur un **VPS OVH** avec **nginx** et gestion via **PhpMyAdmin**.
 
-   - **Archivage** :
-      - Les signatures seront archivés et resteront disponibles pour consultation.
+### Sécurité
+- Gestion sécurisée des **sessions et des authentifications** (*cryptage avec `password_hash()`*).
+- Utilisation de **HTTPS** et mise en place d’un **certificat SSL** pour le déploiement.
 
-## 3. Exigences techniques
+### Déploiement
+- Déploiement sur un **nom de domaine** avec **intégration continue des mises à jour**.
 
-### 3.1 Langages de développement
-   - **Backend :** PHP natif sans frameworks (ou en utilisant des bibliothèques PHP simples pour des fonctionnalités spécifiques).
-   - **Frontend :** 
-         HTML5 pour la structure des pages
-         CSS3 pour la mise en forme, utilisation obligatoire du framework Bootstrap
-         JavaScript pour les interactions dynamiques (possibilité d'utiliser des bibliothèques légères comme jQuery).
-   - **Base de données :** MySQL avec des tables bien structurées et des relations entre les classes, élèves, enseignants, matières et évaluations.
+---
 
-### 3.2 Hébergement
-   - Hébergement sur un serveur Apache compatible avec **PHP 7+**.
-   - Base de données **MySQL** hébergée sur le même serveur.
+## Template et Essais
 
-### 3.3 Sécurité
-   - **Sessions sécurisées** pour la gestion des utilisateurs et des connexions.
-   - Utilisation de **HTTPS** pour garantir la confidentialité des échanges.
-   - **Cryptage des mots de passe** (avec des fonctions comme `password_hash()`).
-   - **Vérification des signatures numériques** : utilisation d’horodatage et de systèmes de chiffrement pour assurer l’authenticité des signatures électroniques.
+### Interface utilisateur
+- Utilisation de **Bootstrap** pour garantir une **interface responsive et ergonomique**.
 
-### 3.4 Compatibilité
-   - Compatibilité avec les navigateurs web modernes : **Google Chrome**, **Mozilla Firefox**, **Microsoft Edge**.
-   - **Responsive Design** : l’interface doit être adaptée aux différents types d’appareils (ordinateurs, tablettes, smartphones).
-
-## 4. Interfaces utilisateur
-
-### 4.1 Tableau de bord de l'administrateur
-   - Vue d’ensemble des utilisateurs (enseignants, élèves).
-   - Gestion des classes et des matières.
-   - Accès aux archives des signatures.
-   - Statistiques générales (nombre d'élèves, d’enseignants, de classes).
-
-### 4.2 Interface enseignant
-   - Consultation de l'emploi du temps.
-   - Liste des classes et des élèves.
-   - Création et gestion des signature.
-
-### 4.3 Interface élève
-   - Consultation de l'emploi du temps.
-   - Signature et acccès à leurs archives.
-
-## 5. Livrables attendus
-   - Code source complet et documenté de l'application.
-   - **Documentation technique** expliquant l’installation et l’administration du système.
-   - **Documentation utilisateur** pour les enseignants, élèves, et administrateurs.
-   - Base de données MySQL préconfigurée avec les tables et relations nécessaires.
+### Validation des fonctionnalités
+- Réalisation d’**essais manuels** pour confirmer le bon fonctionnement de l’application (*authentification, gestion des classes, validation des présences, etc.*).

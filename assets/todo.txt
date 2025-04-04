@@ -5,6 +5,14 @@ Bugs :
     Display :
         main overlapping header and footer, when tables too high, messes up scroll (check student list on admin dashboard)
         "appel" card div doesn't shrink after submitting the mark-attendance form
+    Functionalities :
+        teachers see the daily schedule of all the teachers as their own
+        student don't see their weekly schedule
+        the list of absences on student and admin dashboard doesn't work
+        on the deployed version the schedules on student and teacher dashboard don't display at all :
+            "Warning: Undefined arry key 0 in /var/www/html/welcometraining.elianeperol.com/database/attendance/db-marked-attendance.php on line 17
+             Warning: Trying to acccess array offset value of type null in /var/www/html/welcometraining.elianeperol.com/database/attendance/db-marked-attendance.php on line 17"
+             the problem is not present on the locally run app
 
 
 Failed ideas :
@@ -17,7 +25,7 @@ Failed ideas :
 
 Functionalities :
 
-    Test unitaire : requiert un outil, celui que je connais est PEST, j'installerais composer, etc.
+    Unit testing : required a tool, I know and have used PEST, for which I'd need to install composer, etc.
 
     When creating a schedule, check there's no clashing schedule for the selected class and Teacher
 

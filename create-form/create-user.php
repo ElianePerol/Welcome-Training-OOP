@@ -16,13 +16,13 @@
 
             <form action="create-user.php" method="POST">
 
-              <!-- Prénom -->
+              <!-- First name -->
               <div class="mb-3">
                 <label for="prenom" class="form-label">Prénom :</label>
                 <input type="text" class="form-control" id="prenom" name="first_name" placeholder="Entrez le prénom" required>
               </div>
               
-              <!-- Nom -->
+              <!-- Surname -->
               <div class="mb-3">
                 <label for="nom" class="form-label">Nom :</label>
                 <input type="text" class="form-control" id="nom" name="surname" placeholder="Entrez le nom" required>
@@ -34,13 +34,13 @@
                 <input type="email" class="form-control" id="email" name="email" placeholder="exemple@campus-espl.org" required>
               </div>
 
-              <!-- Mot de passe -->
+              <!-- Password -->
               <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe provisoire :</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Entrez un mot de passe provisoire" required>
               </div>
 
-              <!-- Rôle -->
+              <!-- Role -->
               <div class="mb-3">
                 <label for="role" class="form-label">Rôle :</label>
                 <select class="form-control custom-select form-select" id="role" name="role" required>
@@ -51,7 +51,7 @@
                 </select>
               </div>
 
-              <!-- Classe -->
+              <!-- Class -->
               <div class="mb-4">
                 <label for="classe" class="form-label">Classe :</label>
                 <select class="form-control custom-select form-select mb-4" id="class_id" name="class_id">

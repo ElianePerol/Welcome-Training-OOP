@@ -3,7 +3,6 @@
   include_once "../database/db-connection.php";
   include_once "../classes/form/create-schedule-form-handler.php";
   include_once "../database/create/db-create-schedule.php";
-//   include_once "../database/db-list-display.php";
 ?>
 
 <main class="bg-light d-flex align-items-center vh-100">

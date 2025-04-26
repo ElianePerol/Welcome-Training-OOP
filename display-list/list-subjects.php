@@ -29,7 +29,8 @@ include_once "../database/db-display-lists.php";
                             <tbody>
                                 <?php foreach ($subjects as $subject): ?>
                                     <tr>
-                                        <form action="" method="POST">
+                                        <form action="" method=
+                                        "POST">
                                             <td class="text-center">
                                                 <input type="text" name="name" value="<?php echo htmlspecialchars($subject['name']); ?>" class="form-control">
                                             </td>

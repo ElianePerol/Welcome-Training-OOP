@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\elian\\Documents\\Administratif\\\u00C9tudes\\ESPL\\U5 Dev - Coef 4\\Welcome Training\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\elian\\Documents\\Administratif\\\u00C9tudes\\ESPL\\U5 Dev - Coef 4\\Welcome Training\\create-form\\create-schedule.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:create-form\\create-schedule.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\elian\\Documents\\Administratif\\\u00C9tudes\\ESPL\\U5 Dev - Coef 4\\Welcome Training\\database\\create\\db-create-schedule.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:database\\create\\db-create-schedule.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "db-create-schedule.php",
+              "DocumentMoniker": "C:\\Users\\elian\\Documents\\Administratif\\\u00C9tudes\\ESPL\\U5 Dev - Coef 4\\Welcome Training\\database\\create\\db-create-schedule.php",
+              "RelativeDocumentMoniker": "database\\create\\db-create-schedule.php",
+              "ToolTip": "C:\\Users\\elian\\Documents\\Administratif\\\u00C9tudes\\ESPL\\U5 Dev - Coef 4\\Welcome Training\\database\\create\\db-create-schedule.php*",
+              "RelativeToolTip": "database\\create\\db-create-schedule.php*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEgSURBVDhPrZMhjgIxGIW/2YyoQFaMQPQQiEoSDDeYQ8xRECgkqWQ8EsEFkCQjRgwJyEkwCATJW8Fmt7OzgQT2S37R9uX1vTRNilziRRYl8GXw0hS59BE7OudwzpGm6feeMYYsy2JZh45BVVWEEGiahqIoGI/HVFXFer1mu93G0h/iCk3TCJD3XnVdazabaT6fK01T5XmuwWDwuIK1lhACIQTKsmS5XOK953w\u002BM51OuV6vsfxOnOB4PMo5J2utAE0mEznnZIxRXdfy3j9OcLvdOBwOtG0LQJZlbDYbVqsVl8uF/X4fy\u002B/ECYbDYecGQNZajUYjGWN6Z70Ep9MpXgLQti273e7v/r\u002Bf8RX\u002B10BSb57RMUiSpDfPeLtC8s53BvgE\u002B82z00r8m90AAAAASUVORK5CYII=",
+              "WhenOpened": "2025-04-26T00:46:22.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "create-schedule.php",
+              "DocumentMoniker": "C:\\Users\\elian\\Documents\\Administratif\\\u00C9tudes\\ESPL\\U5 Dev - Coef 4\\Welcome Training\\create-form\\create-schedule.php",
+              "RelativeDocumentMoniker": "create-form\\create-schedule.php",
+              "ToolTip": "C:\\Users\\elian\\Documents\\Administratif\\\u00C9tudes\\ESPL\\U5 Dev - Coef 4\\Welcome Training\\create-form\\create-schedule.php*",
+              "RelativeToolTip": "create-form\\create-schedule.php*",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAswFkAAAAAAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEgSURBVDhPrZMhjgIxGIW/2YyoQFaMQPQQiEoSDDeYQ8xRECgkqWQ8EsEFkCQjRgwJyEkwCATJW8Fmt7OzgQT2S37R9uX1vTRNilziRRYl8GXw0hS59BE7OudwzpGm6feeMYYsy2JZh45BVVWEEGiahqIoGI/HVFXFer1mu93G0h/iCk3TCJD3XnVdazabaT6fK01T5XmuwWDwuIK1lhACIQTKsmS5XOK953w\u002BM51OuV6vsfxOnOB4PMo5J2utAE0mEznnZIxRXdfy3j9OcLvdOBwOtG0LQJZlbDYbVqsVl8uF/X4fy\u002B/ECYbDYecGQNZajUYjGWN6Z70Ep9MpXgLQti273e7v/r\u002Bf8RX\u002B10BSb57RMUiSpDfPeLtC8s53BvgE\u002B82z00r8m90AAAAASUVORK5CYII=",
+              "WhenOpened": "2025-04-26T00:41:04.344Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
